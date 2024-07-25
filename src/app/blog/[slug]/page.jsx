@@ -25,15 +25,16 @@ export default async function PostPage({ params }) {
       <Image
         src={post.yoast_head_json.schema["@graph"][0].thumbnailUrl}
         alt="Card image cap"
-       loading="lazy"
+        priority
         width={825}
         height={431}
         style={{ marginLeft: "500px", marginTop: "70px" }} 
-        rel="preload"
+      
       />
       <div className="second" style={{display: "flex", flexDirection:"row", marginLeft: "500px"}}>
         <Image
           src={post.yoast_head_json.schema["@graph"][4].image.url}
+          priority
           height={50}
           width={50}
           alt="logo"
@@ -47,10 +48,12 @@ export default async function PostPage({ params }) {
 
       <h2>{post.title.rendered}</h2>
 
-      <div
+      {/* <div
         className="blog-post"
         dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-      ></div>
+      ></div> */}
+      <p>{post.excerpt.rendered.replace('<p>','').replace('</p>','')}</p>
+      {/* <p>{cur.excerpt.rendered.slice(0, 102).replace('<p>','') }</p> */}
 
       <p>{post.yoast_head_json.schema["@graph"][4].description}</p>
     </>

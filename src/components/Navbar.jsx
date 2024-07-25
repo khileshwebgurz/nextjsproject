@@ -74,10 +74,10 @@ const Navbar = () => {
           {resourceDropdown && (
             <ul className="dropdown">
               <li>
-                <Link href="/Resources/Blog">Blog</Link>
+                <Link href="/Blog">Blog</Link>
               </li>
               <li>
-                <Link href="/Resources/Infographics">Infographics</Link>
+                <Link href="/Infographics">Infographics</Link>
               </li>
             </ul>
           )}
