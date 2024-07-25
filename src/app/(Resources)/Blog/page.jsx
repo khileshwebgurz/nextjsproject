@@ -6,7 +6,7 @@ import SectionFour from "../../../components/serverComponents/SectionFour.jsx"
 // import SectionFive from "../../../components/serverComponents/SectionFive.jsx"
 // import SectionSix from "../../../components/Home/SectionSix.jsx"
 import SectionSeven from "../../../components/serverComponents/SectionSeven.jsx"
-import SectionEight from "../../../components/serverComponents/Section8.jsx"
+// import SectionEight from "../../../components/serverComponents/Section8.jsx"
 const Blog = () => {
   return (
    <>
@@ -20,7 +20,7 @@ const Blog = () => {
  {/* <SectionFive/> */}
  {/* <SectionSix/> */}
  <SectionSeven/>
-<SectionEight/>
+{/* <SectionEight/> */}
  
 
 
