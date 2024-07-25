@@ -1,7 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 
-// Server Component (default in the App Router)
+// Utility function to escape HTML entities
+function escapeHtml(text) {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 const Home = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts`, {
     cache: "force-cache"
@@ -34,8 +43,11 @@ const Home = async () => {
               <h5 className="card-title">
                 <Link href={`/blog/${cur.slug}`} prefetch>{cur.title.rendered}</Link>
               </h5>
-              <p>{cur.excerpt.rendered.slice(0, 102).replace('<p>','') }</p>
-             
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: escapeHtml(cur.excerpt.rendered.slice(0, 102))
+                }}
+              ></div>
               <Link href={`/blog/${cur.slug}`} prefetch>Read more...</Link>
             </div>
           </div>

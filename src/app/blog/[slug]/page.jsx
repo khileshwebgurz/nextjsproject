@@ -1,5 +1,16 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
+
+function escapeHtml(text) {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+
 async function getPost(slug) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?slug=${slug}`
@@ -46,16 +57,12 @@ export default async function PostPage({ params }) {
         </h4>
       </div>
 
-      <h2>{post.title.rendered}</h2>
-
-      {/* <div
+      <h2>{escapeHtml(post.title.rendered)}</h2>
+      <div
         className="blog-post"
-        dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-      ></div> */}
-      <p>{post.excerpt.rendered.replace('<p>','').replace('</p>','')}</p>
-      {/* <p>{cur.excerpt.rendered.slice(0, 102).replace('<p>','') }</p> */}
-
-      <p>{post.yoast_head_json.schema["@graph"][4].description}</p>
+        dangerouslySetInnerHTML={{ __html: escapeHtml(post.content.rendered) }}
+      ></div>
+      <p>{escapeHtml(post.yoast_head_json.schema["@graph"][4].description)}</p>
     </>
   );
 }
