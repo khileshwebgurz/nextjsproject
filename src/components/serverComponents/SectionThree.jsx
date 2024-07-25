@@ -29,6 +29,8 @@ const Home = async () => {
               width={200}
               height={150}
               priority
+              placeholder="blur"
+              blurDataURL={cur.yoast_head_json.schema["@graph"][0].thumbnailUrl}
             />
             <div className="card-body">
               <h5 className="card-title">

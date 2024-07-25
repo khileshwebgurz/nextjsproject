@@ -1,10 +1,8 @@
 "use client";
-import React, { useState } from "react";
-import "./Form.css";
-import Image from "next/image";
+import React from "react";
+import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import formImg from "../../../public/Images/formImage.webp";
 
 const generateCaptcha = () => {
   const chars =
@@ -16,15 +14,16 @@ const generateCaptcha = () => {
   return captcha;
 };
 
-const Form = () => {
+const HireForm = () => {
   const [showModal, setShowModal] = useState(false);
+  const [captcha, setCaptcha] = useState(generateCaptcha());
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
+    last: "",
     captcha: "",
   });
-  const [captcha, setCaptcha] = useState(generateCaptcha());
   const [phone, setPhone] = useState("");
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,11 +32,10 @@ const Form = () => {
       [name]: value,
     }));
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData.captcha )
-    console.log(captcha)
+    console.log(formData.captcha);
+    console.log(captcha);
     if (formData.captcha !== captcha) {
       alert("Invalid CAPTCHA");
       return;
@@ -53,57 +51,67 @@ const Form = () => {
       captcha: "",
     }));
   };
-
   return (
+
     <>
-      <button onClick={() => setShowModal(true)}>Get a quote</button>
+     <button onClick={() => setShowModal(true)}>Apply Here</button>
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            <div className="modal-image">
-              <Image src={formImg} alt="formImg" height={1200} width={700} />
-            </div>
+           
             <div className="modal-form">
               <span className="close" onClick={() => setShowModal(false)}>
                 &times;
               </span>
               <h2>We are hiring</h2>
-              <form onSubmit={handleSubmit}>
-                <label htmlFor="name">Name:</label>
+              <form>
+               
                 <input
                   type="text"
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
+                  placeholder="First Name*"
                   required
                 />
-                <label htmlFor="email">Email:</label>
+               
+               <input
+                  type="text"
+                  id="last"
+                  name="last"
+                  value={formData.last}
+                  onChange={handleChange}
+                  placeholder="Last Name*"
+                  required
+                />
+
+
                 <input
                   type="email"
                   id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
+                  placeholder="Email*"
                   required
                 />
-                <label htmlFor="message">Website:</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                />
+               
 
-                <select name="cars" id="cars">
-                  <option value="volvo">Digital Marketing</option>
-                  <option value="saab">Content Marketing</option>
-                  <option value="mercedes">SEO</option>
-                  <option value="audi">Web Development</option>
-                  <option value="audi">Full Stack Web development</option>
-                  <option value="audi">Php Web Development</option>
-                  <option value="audi">Wordpress Development</option>
+                <select name="job" id="job">
+                  <option value="business-analyst">Business Analyst</option>
+                  <option value="content-marketing">Content Marketing</option>
+                  <option value="seo">SEO</option>
+                  <option value="web-development">Web Development</option>
+                  <option value="full-stack">Full Stack Web development</option>
+                  <option value="php">Php Web Development</option>
+                  <option value="wordpress">Wordpress Development</option>
+                  <option value="hubspot">HubSpot Development</option>
+                  <option value="mern">Mern Stack Development</option>
+                  <option value="ios">iOS Development</option>
+                  <option value="reactjs">React JS Development</option>
+                  <option value="flutter">Flutter Development</option>
+                  <option value="reactnative">React Native Development</option>
                 </select>
 
                 <PhoneInput
@@ -131,15 +139,16 @@ const Form = () => {
                   onChange={handleChange}
                   required
                 />
-                <button type="submit">Get Quote</button>
-                <h5>We respect your privacy</h5>
+                <input type="file" name="Choose File"/>
+                <button type="submit">Apply Now</button>
+               
               </form>
             </div>
           </div>
         </div>
       )}
     </>
-  );
+  )
 };
 
-export default Form;
+export default HireForm;
