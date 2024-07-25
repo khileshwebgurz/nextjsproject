@@ -1,0 +1,89 @@
+
+header {
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.container-data{
+  margin-top: 40px;
+}
+
+
+/* Styles for the navbar */
+nav {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  position: relative;
+  margin: 0 15px;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  padding: 8px 12px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+nav a:hover {
+  background-color: #f0f0f0;
+  color: #007bff;
+}
+
+/* Dropdown menu styles */
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+ 
+}
+
+.dropdown li {
+  margin: 0;
+}
+
+.dropdown a {
+  display: block;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+.dropdown-submenu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+ 
+}
+
+/* Show dropdown menu on hover */
+nav li:hover > .dropdown,
+.dropdown li:hover > .dropdown-submenu {
+  display: block;
+}
+
+
+.small-card{
+  border: 1px solid black;
+}
